@@ -1,0 +1,26 @@
+{
+  "name": "cheapest-option",
+  "version": "1.0.0",
+  "description": "Pak n save / countdown / new world. Time to gather some data and make decisions",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/edgars-avenins/cheapest-option.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/edgars-avenins/cheapest-option/issues"
+  },
+  "homepage": "https://github.com/edgars-avenins/cheapest-option#readme",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.3",
+    "puppeteer": "^2.0.0",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.4"
+  }
+}
