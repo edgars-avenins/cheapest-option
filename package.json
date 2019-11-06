@@ -19,6 +19,7 @@
   "homepage": "https://github.com/edgars-avenins/cheapest-option#readme",
   "dependencies": {
     "cheerio": "^1.0.0-rc.3",
+    "express": "^4.17.1",
     "puppeteer": "^2.0.0",
     "request": "^2.88.0",
     "request-promise": "^4.2.4"

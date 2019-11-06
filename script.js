@@ -3,7 +3,8 @@
 const rp = require('request-promise')
 const $ = require('cheerio')
 
-let url = 'https://shop.countdown.co.nz/shop/browse/meat?page=1'
+// let url = 'https://shop.countdown.co.nz/shop/browse/meat?page=1'
+let url = '/countdown'
 
 let dataArr = []
 
