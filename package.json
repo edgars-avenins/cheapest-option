@@ -2,9 +2,19 @@
   "name": "cheapest-option",
   "version": "1.0.0",
   "description": "Pak n save / countdown / new world. Time to gather some data and make decisions",
-  "main": "index.js",
+  "main": "server/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server & webpack --watch"
+  },
+  "babel": {
+    "presets": [
+      "env",
+      "react"
+    ],
+    "plugins": [
+      "transform-class-properties"
+    ]
   },
   "repository": {
     "type": "git",
@@ -17,11 +27,27 @@
     "url": "https://github.com/edgars-avenins/cheapest-option/issues"
   },
   "homepage": "https://github.com/edgars-avenins/cheapest-option#readme",
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "babel-register": "^6.26.0",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.14.0",
+    "jest": "^24.8.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-router-dom": "^4.3.1",
+    "webpack": "^4.34.0",
+    "webpack-cli": "^3.3.4",
+    "webpack-dev-server": "^3.7.2"
+  },
   "dependencies": {
     "cheerio": "^1.0.0-rc.3",
-    "express": "^4.17.1",
-    "puppeteer": "^2.0.0",
-    "request": "^2.88.0",
-    "request-promise": "^4.2.4"
+    "express": "^4.16.4",
+    "express-handlebars": "^3.1.0",
+    "request-promise": "^4.2.5"
   }
 }
