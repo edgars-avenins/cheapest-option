@@ -1,3 +1,5 @@
+const $ = require('cheerio')
+
 function processData(html){
     let dataArr = []
     let dataCount = $('div .gridProductStamp', html).length
@@ -11,6 +13,9 @@ function processData(html){
                 dataArr.push(dataPair)
             }
             console.log(dataArr)
+            return dataArr
 }
 
-module.exports = processData
+module.exports = {
+    processData,
+} 

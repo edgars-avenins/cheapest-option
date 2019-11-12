@@ -5,6 +5,7 @@
   "main": "server/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon server & webpack --watch",
     "start": "node server & webpack --watch"
   },
   "babel": {
@@ -47,7 +48,8 @@
   "dependencies": {
     "cheerio": "^1.0.0-rc.3",
     "express": "^4.16.4",
-    "express-handlebars": "^3.1.0",
-    "request-promise": "^4.2.5"
+    "nodemon": "^1.19.4",
+    "request-promise": "^4.2.5",
+    "superagent": "^5.1.0"
   }
 }
