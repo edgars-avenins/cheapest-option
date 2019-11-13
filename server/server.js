@@ -1,5 +1,5 @@
 const express = require('express')
-const rp = require('request-promise')
+const cors = require('cors')
 
 const shop = require('./routes/shops')
 
@@ -7,6 +7,7 @@ const shop = require('./routes/shops')
 const server = express()
 
 server.use(express.json())
+server.use(cors({origin: 'http://localhost:3000'}))
 server.use(express.static('public'))
 
 server.use('/api/v1/shop', shop)
