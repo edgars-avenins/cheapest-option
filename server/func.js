@@ -12,7 +12,6 @@ function processData(html){
                 }
                 dataArr.push(dataPair)
             }
-            console.log(dataArr)
             return dataArr
 }
 

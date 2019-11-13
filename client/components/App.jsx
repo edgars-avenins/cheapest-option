@@ -1,25 +1,46 @@
 import React from 'react'
-import request from 'superagent'
+import { getShopData } from '../api/api'
 
 class App extends React.Component {
     constructor(props){
         super(props)
 
         this.state = {
-            cdData = []
+            cdData: {},
+            switch: false
         }
     }
 
     componentDidMount(){
-        request.get('/countdown')
+        getShopData()
             .then(res => {
-                console.log(res)
+                console.log('Data Arrived')
+                this.setState({
+                    cdData: res,
+                    switch: true
+                })
             })
     }
 
     render(){
+        const cdData = this.state.cdData
+        console.log(this.state.cdData)
         return (
-            <h1>Hi</h1>
+            <React.Fragment>
+            {cdData && this.state.switch ? 
+                <section>
+                    <div className='column'>
+                        {cdData.map((item, i) => {
+                            return <span key={i}>
+                                <h6>{item.name}</h6>
+                                <p>Price: {item.price}</p>
+                            </span>
+                        })}
+                    </div>
+                </section>
+                : <h1>Data Loading, please wait...</h1>
+            }
+            </React.Fragment>
         )
     }
 }
