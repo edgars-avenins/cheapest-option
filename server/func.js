@@ -4,6 +4,8 @@ function processCD(html) {
     let dataArr = []
     let dataCount = $('div .gridProductStamp', html).length
 
+    console.log($('.product-entry', html))
+    //why ????
     for (let i = 0; i < dataCount; i++) {
         let dataGroup = {
             name: $('div .gridProductStamp', html)[i].attribs['data-datalayer-name'],
@@ -12,6 +14,7 @@ function processCD(html) {
         }
         dataArr.push(dataGroup)
     }
+    //console.log(dataArr)
     return dataArr
 }
 
@@ -19,8 +22,7 @@ function processNW(html) {
     let dataArr = []
     let dataCount = $('div .fs-product-card', html).length
 
-    // console.log($($('.fs-product-card .fs-price-lockup .fs-price-lockup__dollars', html)[0]).text())
-    //[0].children[0].data
+   
     for (let i = 0; i < dataCount; i++) {
         let dataGroup = {
             name: $('.fs-product-card .fs-product-card__description', html)[i]
@@ -34,18 +36,11 @@ function processNW(html) {
                         .click
                         .actionField
                         .list,
-            originProductId: JSON.parse(
-                $('.fs-product-card', html)[0]
-                    .attribs['data-track-parameters'])
-                        .ecommerce
-                        .click
-                        .products[0]
-                        .id,
-            price: JSON.parse(
+            price: Number(JSON.parse(
                 $('.fs-product-card__footer-container', html)[i]
                     .attribs['data-options'])
                     .ProductDetails
-                    .PricePerItem
+                    .PricePerItem),
         }
         dataArr.push(dataGroup)
     }

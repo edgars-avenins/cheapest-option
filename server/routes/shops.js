@@ -5,7 +5,7 @@ const rp = require('request-promise')
 
 const fn = require('../func')
 
-let url = 'https://shop.countdown.co.nz/shop/browse/meat?page=1'
+let url = 'https://shop.countdown.co.nz/shop/browse/meat?page=1&nextUI=true'
 let url1 = 'https://www.ishopnewworld.co.nz/category/fresh-foods-and-bakery/butchery/fresh-beef--lamb'
 let url2 = 'https://www.paknsaveonline.co.nz/category/fresh-foods-and-bakery/butchery/fresh-beef--lamb'
 
@@ -22,9 +22,7 @@ router.get('/countdown', (req, res) => {
 
 router.get('/newworld', (req, res) => {
   rp(url1).then(html => {
-      fn.processNW(html)
-      //res.json(fn.processNW(html))
-      res.send([1,2,3,4,5,6,7])
+      res.json(fn.processNW(html))
   })
 })
 

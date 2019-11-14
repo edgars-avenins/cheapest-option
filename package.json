@@ -49,8 +49,10 @@
     "cheerio": "^1.0.0-rc.3",
     "cors": "^2.8.5",
     "express": "^4.16.4",
+    "knex": "^0.20.1",
     "nodemon": "^1.19.4",
     "request-promise": "^4.2.5",
+    "sqlite3": "^4.1.0",
     "superagent": "^5.1.0"
   }
 }
