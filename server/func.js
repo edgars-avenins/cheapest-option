@@ -19,11 +19,33 @@ function processNW(html) {
     let dataArr = []
     let dataCount = $('div .fs-product-card', html).length
 
-    console.log($('div .fs-product-card__description', html)[0].children[1].children[0].data)
-
-    for(let i = 0; i < dataCount; i++){
+    // console.log($($('.fs-product-card .fs-price-lockup .fs-price-lockup__dollars', html)[0]).text())
+    //[0].children[0].data
+    for (let i = 0; i < dataCount; i++) {
         let dataGroup = {
-            name: $('div .fs-product-card__description', html)[i].children[1].children[0].data
+            name: $('.fs-product-card .fs-product-card__description', html)[i]
+                .children[1]
+                .children[0]
+                .data,
+            category: JSON.parse(
+                $('.fs-product-card', html)[i]
+                    .attribs['data-track-parameters'])
+                        .ecommerce
+                        .click
+                        .actionField
+                        .list,
+            originProductId: JSON.parse(
+                $('.fs-product-card', html)[0]
+                    .attribs['data-track-parameters'])
+                        .ecommerce
+                        .click
+                        .products[0]
+                        .id,
+            price: JSON.parse(
+                $('.fs-product-card__footer-container', html)[i]
+                    .attribs['data-options'])
+                    .ProductDetails
+                    .PricePerItem
         }
         dataArr.push(dataGroup)
     }

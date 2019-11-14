@@ -6,8 +6,5 @@ const shopApiUrl = '/api/v1/shop/'
 export function getShopData(shopName){
   return request
     .get(shopApiUrl + shopName)
-    .then(res => {
-      console.log(res)
-      return res.body
-    })
+    .then(res => res.body)
 }
