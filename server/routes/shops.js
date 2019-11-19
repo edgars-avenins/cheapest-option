@@ -18,24 +18,14 @@ router.get('/', (req, res) => {
 })
 
 router.get('/countdown', (req, res) => {
-  
-  rp('http://localhost:3000/countdown/data').then(data => res.json(data))
+//how to get it to wait for the data from recursive func
 
-  
-
-
-  // rp(url).then(html => {
-  //     res.json(fn.processCD(html))
-  // })
-})
-
-router.get('/countdown/data', (req, res) => {
   let page = 0
-  recGetData(page, null).then(data => res.send(data))
+  res.json(recGetData(page, null))
   
 
 
-
+//works
   function recGetData(page, data){
     if(page == 10) {
       console.log(data)
@@ -46,6 +36,11 @@ router.get('/countdown/data', (req, res) => {
       return recGetData(page+1, data)
     })
   }
+
+
+  // rp(url).then(html => {
+  //     res.json(fn.processCD(html))
+  // })
 })
 
 
