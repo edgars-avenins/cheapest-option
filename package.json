@@ -4,7 +4,7 @@
   "description": "Pak n save / countdown / new world. Time to gather some data and make decisions",
   "main": "server/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "webpack",
     "dev": "nodemon server & webpack --watch",
     "start": "node server & webpack --watch"
   },

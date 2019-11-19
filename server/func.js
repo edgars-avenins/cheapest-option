@@ -1,21 +1,20 @@
 const $ = require('cheerio')
+let cdDataArr = []
 
 function processCD(html) {
-    let dataArr = []
     let dataCount = $('div .gridProductStamp', html).length
 
-    console.log($('.product-entry', html))
-    //why ????
+    //console.log($('.product-entry', html))
     for (let i = 0; i < dataCount; i++) {
         let dataGroup = {
             name: $('div .gridProductStamp', html)[i].attribs['data-datalayer-name'],
             price: $('div .gridProductStamp', html)[i].attribs['data-datalayer-price'],
             image: $('div .gridProductStamp-product .gridProductStamp-image', html)[i].attribs.src
         }
-        dataArr.push(dataGroup)
+        cdDataArr.push(dataGroup)
     }
-    //console.log(dataArr)
-    return dataArr
+    // console.log(cdDataArr)
+    return cdDataArr
 }
 
 function processNW(html) {
@@ -44,7 +43,7 @@ function processNW(html) {
         }
         dataArr.push(dataGroup)
     }
-    console.log(dataArr)
+    // console.log(dataArr)
     return dataArr
 }
 
