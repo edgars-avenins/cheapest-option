@@ -20,7 +20,7 @@ class App extends React.Component {
         getShopData(shopName)
             .then(res => {
                 console.log('Data Arrived')
-                switch(shopName){
+                switch (shopName) {
                     case 'countdown':
                         this.setState({
                             cdData: res,
@@ -34,7 +34,7 @@ class App extends React.Component {
                             nextData: true
                         })
                         return
-                    
+
                     case 'paknsave':
                         this.setState({
                             pksData: res,
@@ -44,18 +44,18 @@ class App extends React.Component {
                     default:
                         return console.error('Error, invalid case')
                 }
-                
+
             })
     }
 
     clearString = (string) => {
-        let badWordArr = ['Countdown', 'NZ', 'Butchery', 'Free', 'Farmed', 'Beak & Sons']
+        let badWordArr = ['Hellers', 'Countdown', 'NZ', 'Butchery', 'Free', 'Farmed', 'Beak & Sons', 'Silver', 'Fern', 'Farm', 'Turk', 'Beehive', 'Authentique', 'Tegel', 'Green', 'Meadows', 'Frying', 'Waitoa', 'Range', 'Verkers', 'Harmony', 'Macro', 'New Zealand']
         return string.split(' ').map(word => {
-            for(let i = 0; i < badWordArr.length; i++){
-                if(word.includes(badWordArr[i])) return
+            for (let i = 0; i < badWordArr.length; i++) {
+                if (word.includes(badWordArr[i])) return
             }
             return word
-        }).join(' ') 
+        }).join(' ')
     }
 
     render() {
@@ -64,67 +64,70 @@ class App extends React.Component {
         const pksData = this.state.pksData
         return (
             <React.Fragment>
-
-                {/* <button onClick={this.getData} value='countdown'><img src='countdown.png' /></button>
-                <button onClick={this.getData} value='newworld'><img src='/newworld.jpeg' /></button>
-                <button onClick={this.getData} value='paknsave'><img src='/paknsave.jpeg' /></button> */}
-                <button onClick={this.getData} value='countdown'>CD</button>
-                <button onClick={this.getData} value='newworld'>NW</button>
-                <button onClick={this.getData} value='paknsave'>PkS</button>
+                <div>
+                    <img src='countdown.png' />
+                    <img src='/newworld.jpeg' />
+                    <img src='/paknsave.jpeg' />
+                </div>
+                <div>
+                    <button onClick={this.getData} value='countdown'>CD</button>
+                    <button onClick={this.getData} value='newworld'>NW</button>
+                    <button onClick={this.getData} value='paknsave'>PkS</button>
+                </div>
                 <div className='column'>
-                {cdData && this.state.switch ?
-                            <table >
-                                <tbody>
-                                    <tr>
-                                        <td>Product</td>
-                                        <td>Price</td>
+                    {cdData && this.state.switch ?
+                        <table className='item'>
+                            <tbody>
+                                <tr>
+                                    <td>Product</td>
+                                    <td>Price</td>
+                                </tr>
+                                {cdData.map((item, i) => {
+                                    return <tr key={i}>
+                                        <td>{this.clearString(item.name)}</td>
+                                        <td>{item.price}</td>
                                     </tr>
-                                    {cdData.map((item, i) => {
-                                        return <tr key={i}>
-                                            <td>{this.clearString(item.name)}</td>
-                                            <td>{item.price}</td>
-                                        </tr>
-                                    })}
-                                </tbody>
-                            </table>
-                    : <h1>Data Loading, please wait...</h1>
-                }
-                            {this.state.nextData ? 
-                                <table>
-                                    <tbody>
-                                        <tr>
-                                            <td>Product</td>
-                                            <td>Price</td>
-                                        </tr>
-                                        {nwData.map((item, i) => {
-                                            return <tr key={i}>
-                                                <td>{this.clearString(item.name)}</td>
-                                                <td>{item.price}</td>
-                                            </tr>
-                                        })}
-                                    </tbody>
-                                </table>
-                            : <h1>Waiting for data</h1>
-                            }              
-                            {this.state.nextnextData ? 
-                                <table>
-                                    <tbody>
-                                        <tr>
-                                            <td>Product</td>
-                                            <td>Price</td>
-                                        </tr>
-                                        {pksData.map((item, i) => {
-                                            return <tr key={i}>
-                                                <td>{this.clearString(item.name)}</td>
-                                                <td>{item.price}</td>
-                                            </tr>
-                                        })}
-                                    </tbody>
-                                </table>
-                            : <h1>Waiting for data</h1>
-                            }                                        
-                                </div>
-                       
+                                })}
+                            </tbody>
+                        </table>
+                        : <h1>Data Loading, please wait...</h1>
+                    }
+                    {this.state.nextData ?
+                        <table className='item'>
+                            <tbody>
+                                <tr>
+                                    <td>Product</td>
+                                    <td>Price</td>
+                                </tr>
+                                {nwData.map((item, i) => {
+                                    return <tr key={i}>
+                                        <td>{this.clearString(item.name)}</td>
+                                        <td>{item.price}</td>
+                                    </tr>
+                                })}
+                            </tbody>
+                        </table>
+                        : <h1>Waiting for data</h1>
+                    }
+                    {this.state.nextnextData ?
+                        <table className='item'>
+                            <tbody>
+                                <tr>
+                                    <td>Product</td>
+                                    <td>Price</td>
+                                </tr>
+                                {pksData.map((item, i) => {
+                                    return <tr key={i}>
+                                        <td>{this.clearString(item.name)}</td>
+                                        <td>{item.price}</td>
+                                    </tr>
+                                })}
+                            </tbody>
+                        </table>
+                        : <h1>Waiting for data</h1>
+                    }
+                </div>
+
             </React.Fragment>
         )
     }

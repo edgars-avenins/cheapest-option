@@ -1,5 +1,7 @@
 const $ = require('cheerio')
 let cdDataArr = []
+let nwDataArr = []
+
 
 function processCD(html) {
     let dataCount = $('div .gridProductStamp', html).length
@@ -18,7 +20,6 @@ function processCD(html) {
 }
 
 function processNW(html) {
-    let dataArr = []
     let dataCount = $('div .fs-product-card', html).length
 
    
@@ -41,10 +42,10 @@ function processNW(html) {
                     .ProductDetails
                     .PricePerItem),
         }
-        dataArr.push(dataGroup)
+        nwDataArr.push(dataGroup)
     }
-    // console.log(dataArr)
-    return dataArr
+    // console.log(nwDataArr)
+    return nwDataArr
 }
 
 module.exports = {
