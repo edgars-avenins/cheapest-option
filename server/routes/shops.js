@@ -18,29 +18,18 @@ router.get('/', (req, res) => {
 })
 
 router.get('/countdown', (req, res) => {
-//how to get it to wait for the data from recursive func
-
   let page = 0
-  res.json(recGetData(page, null))
+  recGetData(page, null)
+    .then((data) => res.json(data))
   
-
-
-//works
   function recGetData(page, data){
-    if(page == 10) {
-      console.log(data)
-      return data
-    }
-    rp(url + page).then(html => {
+    return rp(url + page).then(html => {
       let data = fn.processCD(html)
-      return recGetData(page+1, data)
-    })
+        if(page == 20) {
+          return data
+        }return recGetData(page+1, data)
+      })
   }
-
-
-  // rp(url).then(html => {
-  //     res.json(fn.processCD(html))
-  // })
 })
 
 

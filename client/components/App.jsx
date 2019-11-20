@@ -64,6 +64,10 @@ class App extends React.Component {
         const pksData = this.state.pksData
         return (
             <React.Fragment>
+
+                {/* <button onClick={this.getData} value='countdown'><img src='countdown.png' /></button>
+                <button onClick={this.getData} value='newworld'><img src='/newworld.jpeg' /></button>
+                <button onClick={this.getData} value='paknsave'><img src='/paknsave.jpeg' /></button> */}
                 <button onClick={this.getData} value='countdown'>CD</button>
                 <button onClick={this.getData} value='newworld'>NW</button>
                 <button onClick={this.getData} value='paknsave'>PkS</button>
