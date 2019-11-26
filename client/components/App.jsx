@@ -81,11 +81,19 @@ class App extends React.Component {
                                 <tr>
                                     <td>Product</td>
                                     <td>Price</td>
+                                    <td>Price per Unit</td>
+                                    <td>Old price</td>
                                 </tr>
                                 {cdData.map((item, i) => {
                                     return <tr key={i}>
                                         <td>{this.clearString(item.name)}</td>
-                                        <td>{item.price}</td>
+                                        <td>{item.newPrice}</td>
+                                        {item.pricePer && 
+                                        <td>{item.pricePer}</td>
+                                        }
+                                        {item.oldPrice && 
+                                        <td>{item.oldPrice}</td>
+                                        }
                                     </tr>
                                 })}
                             </tbody>

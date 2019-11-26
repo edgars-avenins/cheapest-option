@@ -6,13 +6,46 @@ let nwDataArr = []
 function processCD(html) {
     let dataCount = $('div .gridProductStamp', html).length
 
-    //console.log($('.product-entry', html))
+    // console.log($('.gridProductStamp-subPrice', html)[6].prev.prev.children[0].data)
+    // console.log(($('.gridProductStamp-priceContainer', html)[5].children[3].children[0].data).split('').map(i => {
+    //     if(i.charCodeAt() === 32) return
+    //     return i
+    // }).join(''))
+    
     for (let i = 0; i < dataCount; i++) {
-        let dataGroup = {
-            name: $('div .gridProductStamp', html)[i].attribs['data-datalayer-name'],
-            price: $('div .gridProductStamp', html)[i].attribs['data-datalayer-price'],
-            image: $('div .gridProductStamp-product .gridProductStamp-image', html)[i].attribs.src
+        let dataGroup
+        if($('.gridProductStamp-priceContainer', html)[i].children.length === 3){
+            dataGroup = {
+                name: $('div .gridProductStamp', html)[i].attribs['data-datalayer-name'],
+                newPrice: $('div .gridProductStamp', html)[i].attribs['data-datalayer-price'],
+            }
+        }else if($('.gridProductStamp-priceContainer', html)[i].children.length === 5){
+            dataGroup = {
+                name: $('div .gridProductStamp', html)[i].attribs['data-datalayer-name'],
+                newPrice: $('div .gridProductStamp', html)[i].attribs['data-datalayer-price'],
+                pricePer: ($('.gridProductStamp-priceContainer', html)[i].children[3].children[0].data).split('').map(i => {
+                    if(i.charCodeAt() === 32) return
+                    return i
+                }).join(''),
+            }
+        }else {
+            dataGroup = {
+                name: $('div .gridProductStamp', html)[i].attribs['data-datalayer-name'],
+                newPrice: $('div .gridProductStamp', html)[i].attribs['data-datalayer-price'],
+                oldPrice: ($('.gridProductStamp-priceContainer', html)[i].children[3].children[0].data).split('').map(i => {
+                    if(i.charCodeAt() === 32) return
+                    return i
+                }).join(''),
+                pricePer: ($('.gridProductStamp-priceContainer', html)[i].children[5].children[0].data).split('').map(i => {
+                    if(i.charCodeAt() === 32) return
+                    return i
+                }).join(''),
+            }
         }
+
+
+
+        // console.log(dataGroup)
         cdDataArr.push(dataGroup)
     }
     // console.log(cdDataArr)

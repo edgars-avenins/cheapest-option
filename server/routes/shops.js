@@ -5,11 +5,10 @@ const rp = require('request-promise')
 
 const fn = require('../func')
 
-let cdBrowse = ['bakery', 'deli-chilled-foods', 'fruit-vegetables', 'meat', 'seafood', 'baby-care', 'baking-cooking', 'biscuits-crackers', 'breakfast-foods', 'canned-prepared-foods', 'chocolate-sweets-snacks', 'cleaning-homecare', 'clothing-manchester', 'drinks-hot-cold', 'frozen-foods', 'health-welness', 'home-kitchenware', 'liquor-beer-cider', 'liquor-wine', 'meal-ingredients', 'office-entertainment', 'personal-care', 'pet-care', 'toys-party-needs']
-let nextPage = '?page=2'
-let counter = 2
+let cdBrowse = ['bakery', 'deli-chilled-foods', 'fruit-vegetables', 'meat', 'seafood', 'baby-care', 'baking-cooking', 'biscuits-crackers', 'breakfast-foods', 'canned-prepared-foods', 'chocolate-sweets-snacks', 'cleaning-homecare', 'clothing-manchester', 'drinks-hot-cold', 'frozen-foods', 'health-wellness', 'home-kitchenware', 'liquor-beer-cider', 'liquor-wine', 'meal-ingredients', 'office-entertainment', 'personal-care', 'pet-care', 'toys-party-needs']
+let nextPage = '?page='
 
-let url = 'https://shop.countdown.co.nz/shop/browse/meat?page='
+let url = 'https://shop.countdown.co.nz/shop/browse/'
 let url1 = 'https://www.ishopnewworld.co.nz/category/fresh-foods-and-bakery/butchery?pg='
 let url2 = 'https://www.paknsaveonline.co.nz/category/fresh-foods-and-bakery/butchery?pg='
 
@@ -18,16 +17,33 @@ router.get('/', (req, res) => {
 })
 
 router.get('/countdown', (req, res) => {
-  let page = 0
+  //used to make it faster
+  // rp('https://shop.countdown.co.nz/shop/browse/bakery?page=2').then(html => {
+  //       res.json(fn.processCD(html))
+  //   })
+
+
+
+  let page = 1
+  let i = 0
+
   recGetData(page, null)
     .then((data) => res.json(data))
   
   function recGetData(page, data){
-    return rp(url + page).then(html => {
+    return rp(url + cdBrowse[i] + nextPage + page).then(html => {
       let data = fn.processCD(html)
-        if(page == 5) {
+      console.log(data.length)
+        if(page > 0) {
+          if(i < cdBrowse.length-1){
+            i++
+            page = 1
+            console.log('/////////////////////////////////////////////////////////////////////////////////////////////', cdBrowse[i])
+            return recGetData(page, data)
+          }
           return data
-        }return recGetData(page+1, data)
+        }
+        return recGetData(page+1, data)
       })
   }
 })
