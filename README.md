@@ -8,3 +8,4 @@ Idea was born about a year before I actually decided to try an execute it. Quite
 # Ideas
 
 Look into web scrapper tech, to optimize how data is gathered
+Adapt mobile first principles
