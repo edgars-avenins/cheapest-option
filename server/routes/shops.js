@@ -22,30 +22,35 @@ router.get('/countdown', (req, res) => {
   //       res.json(fn.processCD(html))
   //   })
 
-
+ 
 
   let page = 1
-  let i = 0
+  // let i = 0
 
-  recGetData(page, null)
-    .then((data) => res.json(data))
+  rp(url + cdBrowse[0] + nextPage + page)
+  .then(html => {
+    console.log(html)
+    res.json(html)})
+
+  // recGetData(page, null)
+  //   .then((data) => res.json(data))
   
-  function recGetData(page, data){
-    return rp(url + cdBrowse[i] + nextPage + page).then(html => {
-      let data = fn.processCD(html)
-      console.log(data.length)
-        if(page > 0) {
-          if(i < cdBrowse.length-1){
-            i++
-            page = 1
-            console.log('/////////////////////////////////////////////////////////////////////////////////////////////', cdBrowse[i])
-            return recGetData(page, data)
-          }
-          return data
-        }
-        return recGetData(page+1, data)
-      })
-  }
+  // function recGetData(page, data){
+  //   return rp(url + cdBrowse[i] + nextPage + page).then(html => {
+  //     let data = fn.processCD(html)
+  //     console.log(data.length)
+  //       if(page > 0) {
+  //         if(i < cdBrowse.length-1){
+  //           i++
+  //           page = 1
+  //           console.log('/////////////////////////////////////////////////////////////////////////////////////////////', cdBrowse[i])
+  //           return recGetData(page, data)
+  //         }
+  //         return data
+  //       }
+  //       return recGetData(page+1, data)
+  //     })
+  // }
 })
 
 

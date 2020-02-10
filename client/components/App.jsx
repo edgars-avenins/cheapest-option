@@ -20,6 +20,7 @@ class App extends React.Component {
         getShopData(shopName)
             .then(res => {
                 console.log('Data Arrived')
+                console.log(res)
                 switch (shopName) {
                     case 'countdown':
                         this.setState({
@@ -84,7 +85,7 @@ class App extends React.Component {
                                     <td>Price per Unit</td>
                                     <td>Old price</td>
                                 </tr>
-                                {cdData.map((item, i) => {
+                                {/* {cdData.map((item, i) => {
                                     return <tr key={i}>
                                         <td>{this.clearString(item.name)}</td>
                                         <td>{item.newPrice}</td>
@@ -95,7 +96,7 @@ class App extends React.Component {
                                         <td>{item.oldPrice}</td>
                                         }
                                     </tr>
-                                })}
+                                })} */}
                             </tbody>
                         </table>
                         : <h1>Data Loading, please wait...</h1>

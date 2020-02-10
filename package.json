@@ -4,7 +4,7 @@
   "description": "Pak n save / countdown / new world. Time to gather some data and make decisions",
   "main": "server/index.js",
   "scripts": {
-    "test": "webpack",
+    "test": "webpack --watch",
     "dev": "nodemon server & webpack --watch",
     "start": "node server & webpack --watch"
   },
