@@ -48,7 +48,7 @@
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.16.4",
-    "knex": "^0.20.1",
+    "knex": "^2.4.0",
     "sqlite3": "^4.1.0",
     "superagent": "^5.1.0"
   }
